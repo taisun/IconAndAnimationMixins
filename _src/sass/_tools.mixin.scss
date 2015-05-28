@@ -1,0 +1,33 @@
+$font-path: "../../font/";
+$font-name: "fontawesome-webfont";
+@mixin fontSet($fontName, $path: $font-path, $name: $font-name) {
+  @font-face {
+    font-family: '#{$fontName}';
+    src: url('#{$path}#{$name}.eot'),
+    url('#{$path}#{$name}.eot?#iefix') format('embedded-opentype'),
+    url('#{$path}#{$name}.woff2') format('woff2')
+		url('#{$path}#{$name}.woff') format('woff'),
+		url('#{$path}#{$name}.ttf') format('truetype'),
+		url('#{$path}#{$name}.svg#fontawesomeregular') format('svg');
+  }
+}
+
+@mixin iconset ($icnName) {
+  &:before {
+    $name: icon($icnName);
+    content: #{$name};
+  }
+}
+
+@mixin animation($name) {
+  animation: $name 1.5s linear infinite;
+  @include keys($name);
+}
+@mixin keys($animetionName, $anime: $animates) {
+  @if map-has-key($anime, $animetionName) {
+    @keyframes spin {
+    	0% {transform: rotate(map-get(map-get($anime, $animetionName), start));}
+    	100% {transform: rotate(map-get(map-get($anime, $animetionName), last));}
+    }
+  }
+}

@@ -1,0 +1,44 @@
+
+@import "./setting.config";
+@import "./tools.function";
+@import "./tools.mixin";
+@include fontSet(FontAwesome);
+
+%icon {
+  display: inline-block;
+  font-family: "FontAwesome";
+}
+
+.c-{
+  @at-root {
+    #{&}icon{
+      @at-root {
+        #{selector-append(&, "__exl")} {
+          @extend %icon;
+          @include iconset(excle);
+        }
+        #{selector-append(&, "__word")} {
+          @extend %icon;
+          @include iconset(word);
+        }
+        #{selector-append(&, "__pdf")} {
+          @extend %icon;
+          @include iconset(pdf);
+        }
+        #{selector-append(&, "__spin")} {
+          @extend %icon;
+          @include iconset(spin);
+          @include animation(spin);
+        }
+        #{selector-append(&, "__right")} {
+          @extend %icon;
+          @include iconset(right);
+        }
+        #{selector-append(&, "__left")} {
+          @extend %icon;
+          @include iconset(left);
+        }
+      }
+    }
+  }
+}

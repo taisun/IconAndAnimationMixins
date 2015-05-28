@@ -1,0 +1,6 @@
+@function icon($iconName, $iconAry: $icons) {
+  @if map-has-key($iconAry, $iconName) {
+    $str: map-get($iconAry, $iconName);
+    @return unquote("\"")+unquote(str-insert($str, "\\", 1))+unquote("\"");;
+  }
+}

@@ -1,0 +1,21 @@
+$font-path: "../../font/";
+$font-name: "fontawesome-webfont";
+$icons:(
+  excle: f1c3,
+  word: f1c2,
+  pdf: f1c1,
+  spin: f110,
+  right: f105,
+  left: f104
+);
+
+$animates:(
+  spin:(
+    start: 0deg,
+    last: 360deg
+  ),
+  swing:(
+    start: 45deg,
+    last: 135deg
+  )
+);
