@@ -98,3 +98,4 @@ $animates:(
 
 ##まとめ
 アニメーション用のmixinはそれに応じた汎用性が高いものも使用可能だがここではアイコンのみなのでこのようにしました。
+**[Demo](http://taisun.github.io/demos/iconanime/)**
