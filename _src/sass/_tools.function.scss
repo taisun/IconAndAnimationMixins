@@ -1,6 +1,12 @@
+/*
+ * IconのUnicodeを返します
+ * @desc Sass4.3~ そのままではUnicodeを使用できないのでエスケープを利用して性k作しました
+ * @param $icnName mixinからの引数名
+ * @param $iconAry valiableの設定した配列です。
+ */
 @function icon($iconName, $iconAry: $icons) {
   @if map-has-key($iconAry, $iconName) {
     $str: map-get($iconAry, $iconName);
-    @return unquote("\"")+unquote(str-insert($str, "\\", 1))+unquote("\"");;
+    @return unquote("\"")+unquote(str-insert($str, "\\", 1))+unquote("\"");
   }
 }

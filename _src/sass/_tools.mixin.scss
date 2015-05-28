@@ -1,5 +1,11 @@
-$font-path: "../../font/";
-$font-name: "fontawesome-webfont";
+
+/*
+ * WebFontをセットします
+ * @desc webフォントの設定用mixin
+ * @param $fontName variableで登録した任意の名前
+ * @param $path variableで登録した任意の値
+ * @param $name variableで登録した任意の値
+ */
 @mixin fontSet($fontName, $path: $font-path, $name: $font-name) {
   @font-face {
     font-family: '#{$fontName}';
@@ -12,6 +18,11 @@ $font-name: "fontawesome-webfont";
   }
 }
 
+/*
+ * Iconをセットします
+ * @desc webフォントアイコンのです
+ * @param $icnName variableで登録した任意の名前
+ */
 @mixin iconset ($icnName) {
   &:before {
     $name: icon($icnName);
@@ -19,10 +30,22 @@ $font-name: "fontawesome-webfont";
   }
 }
 
+/*
+ * AnimationMixin
+ * @desc CSS3のアニメーション
+ * @param $name variableで登録した任意の名前
+ */
 @mixin animation($name) {
   animation: $name 1.5s linear infinite;
   @include keys($name);
 }
+
+/*
+ * AnimationMixin
+ * @desc CSS3のアニメーションキーフレームを利用したもので主に回転系
+ * @param $animetionName variableで登録した任意の名前
+ * @param $anime variableで登録した任意の配列
+ */
 @mixin keys($animetionName, $anime: $animates) {
   @if map-has-key($anime, $animetionName) {
     @keyframes spin {
