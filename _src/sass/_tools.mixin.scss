@@ -9,12 +9,14 @@
 @mixin fontSet($fontName, $path: $font-path, $name: $font-name) {
   @font-face {
     font-family: '#{$fontName}';
-    src: url('#{$path}#{$name}.eot'),
-    url('#{$path}#{$name}.eot?#iefix') format('embedded-opentype'),
-    url('#{$path}#{$name}.woff2') format('woff2')
-		url('#{$path}#{$name}.woff') format('woff'),
-		url('#{$path}#{$name}.ttf') format('truetype'),
-		url('#{$path}#{$name}.svg#fontawesomeregular') format('svg');
+    src: url('#{$path}#{$name}.eot?v=4.3.0');
+    src: url('#{$path}#{$name}.eot?#iefix&v=4.3.0') format('embedded-opentype'),
+    url('#{$path}#{$name}.woff2?v=4.3.0') format('woff2'),
+		url('#{$path}#{$name}.woff?v=4.3.0') format('woff'),
+		url('#{$path}#{$name}.ttf?v=4.3.0') format('truetype'),
+		url('#{$path}#{$name}.svg?v=4.3.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
   }
 }
 
@@ -24,7 +26,7 @@
  * @param $icnName variableで登録した任意の名前
  */
 @mixin iconset ($icnName) {
-  &:before {
+  &::before {
     $name: icon($icnName);
     content: #{$name};
   }
@@ -35,9 +37,11 @@
  * @desc CSS3のアニメーション
  * @param $name variableで登録した任意の名前
  */
-@mixin animation($name) {
-  animation: $name 1.5s linear infinite;
-  @include keys($name);
+@mixin animate($name, $prop:transform) {
+  &::before {
+    animation: $name 1.5s linear infinite;
+  }
+  @include keys($name, $prop);
 }
 
 /*
@@ -46,11 +50,23 @@
  * @param $animetionName variableで登録した任意の名前
  * @param $anime variableで登録した任意の配列
  */
-@mixin keys($animetionName, $anime: $animates) {
+@mixin keys($animetionName, $prop: transform, $anime: $animates) {
   @if map-has-key($anime, $animetionName) {
-    @keyframes spin {
-    	0% {transform: rotate(map-get(map-get($anime, $animetionName), start));}
-    	100% {transform: rotate(map-get(map-get($anime, $animetionName), last));}
-    }
+      @keyframes #{$animetionName} {
+        @if $animetionName == swing {
+          20% {#{$prop}: rotate(#{map-get(map-get($anime, $animetionName), 0)});}
+          40% {#{$prop}: rotate(#{map-get(map-get($anime, $animetionName), 1)});}
+          60% {#{$prop}: rotate(#{map-get(map-get($anime, $animetionName), 2)});}
+          80% {#{$prop}: rotate(#{map-get(map-get($anime, $animetionName), 3)});}
+          100% {#{$prop}: rotate(#{map-get(map-get($anime, $animetionName), 4)});}
+        }@else if $animetionName == spin {
+        	0% {#{$prop}: rotate(#{map-get(map-get($anime, $animetionName), start)});}
+        	100% {#{$prop}: rotate(#{map-get(map-get($anime, $animetionName), last)});}
+        }@else if $animetionName == move {
+          0% {#{$prop}: translate(#{map-get(map-get($anime, $animetionName), 0)}, #{map-get(map-get($anime, $animetionName), 0)});}
+          50% {#{$prop}: translate(#{map-get(map-get($anime, $animetionName), 1)}, #{map-get(map-get($anime, $animetionName), 0)});}
+          100% {#{$prop}: translate(#{map-get(map-get($anime, $animetionName), 2)}, #{map-get(map-get($anime, $animetionName), 0)});}
+        }
+      }
   }
 }

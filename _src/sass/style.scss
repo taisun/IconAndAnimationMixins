@@ -5,8 +5,10 @@
 @include fontSet(FontAwesome);
 
 %icon {
-  display: inline-block;
-  font-family: "FontAwesome";
+  &::before {
+    display: inline-block;
+    font-family: "FontAwesome";
+  }
 }
 
 .c-{
@@ -28,15 +30,18 @@
         #{selector-append(&, "__spin")} {
           @extend %icon;
           @include iconset(spin);
-          @include animation(spin);
+          @include animate(spin);
         }
         #{selector-append(&, "__right")} {
           @extend %icon;
           @include iconset(right);
+          @include animate(swing);
+          transform-origin:right bottom;
         }
         #{selector-append(&, "__left")} {
           @extend %icon;
           @include iconset(left);
+          @include animate(move);
         }
       }
     }

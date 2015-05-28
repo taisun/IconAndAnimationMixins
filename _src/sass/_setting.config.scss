@@ -1,4 +1,4 @@
-$font-path: "../../font/";
+$font-path: "../font/";
 $font-name: "fontawesome-webfont";
 $icons:(
   excle: f1c3,
@@ -15,7 +15,15 @@ $animates:(
     last: 360deg
   ),
   swing:(
-    start: 45deg,
-    last: 135deg
+    0: 0deg,
+    1: 10deg,
+    2: 0deg,
+    3: -10deg,
+    4: 0deg
+  ),
+  move:(
+    0: 0,
+    1: 100%,
+    2: 0
   )
 );
